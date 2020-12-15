@@ -29,8 +29,13 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:tint="@color/Green"
+            android:tintMode="multiply"
             android:layout_centerInParent="true"
-            app:srcCompat="@drawable/cloud">
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/cloud"
+            android:background="@drawable/frame">
+
 
         </ImageView>
     </RelativeLayout>
