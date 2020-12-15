@@ -8,9 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,12 +63,7 @@ public class ForecastFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         //container.setBackgroundColor(Color.parseColor("#20FF0000"));
-        View view = inflater.inflate(R.layout.fragment_forecast, container, false);
-        LinearLayout biglayout = (LinearLayout) view.findViewById(R.id.parentForecast);
-        biglayout.setBackgroundColor(Color.parseColor("#20FF0000"));
-        LinearLayout layout =(LinearLayout) view.findViewById(R.id.biglayout);
-        layout.setBackgroundColor(Color.parseColor("#87CEEB"));
-        return view;
+        return inflater.inflate(R.layout.fragment_forecast, container, false);
 
 
 

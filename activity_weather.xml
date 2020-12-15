@@ -8,27 +8,35 @@
     tools:context=".WeatherActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/text_message"
+        <LinearLayout
+            android:id="@+id/weatherfraglayout"
             android:layout_width="match_parent"
-            android:layout_height="100px"
-            android:layout_margin="8px" />
+            android:layout_height="0dp"
+            android:layout_margin="8px"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <fragment
+                android:name="vn.edu.usth.weather.WeatherFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"></fragment>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/forecastfraglayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="8px"
+            android:layout_weight="1">
+
+        </LinearLayout>
+
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/mainlayout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="8px"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/container"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:layout_editor_absoluteX="3dp">
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

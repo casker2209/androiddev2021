@@ -15,15 +15,16 @@ public class WeatherActivity extends AppCompatActivity {
         setContentView(R.layout.activity_weather);
         Log.i("Created","onCreate");
 
-        TextView mTextView = (TextView) findViewById(R.id.text_message);
-        mTextView.setText("Hello World!");
-        LinearLayout Layout = (LinearLayout) findViewById(R.id.mainlayout);
+        //TextView mTextView = (TextView) findViewById(R.id.text_message);
+        //mTextView.setText("Hello World!");
+        LinearLayout Layout = (LinearLayout) findViewById(R.id.forecastfraglayout);
         Layout.setOrientation(LinearLayout.VERTICAL);
         //FrameLayout frame = new FrameLayout(this);
         if (savedInstanceState == null) {
+
             ForecastFragment firstFragment = new ForecastFragment();
             getSupportFragmentManager().beginTransaction().add(
-                    R.id.container, firstFragment).commit();
+                    R.id.forecastfraglayout, firstFragment).commit();
         }
     }
     @Override
