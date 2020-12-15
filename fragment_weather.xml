@@ -10,21 +10,21 @@
         android:id="@+id/weatherlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#009688">
+        android:background="@color/Green">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:text="12C\nCloudy"></TextView>
+            android:text="@string/weather"></TextView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:text="Paris"></TextView>
+            android:text="@string/Paris"></TextView>
 
         <ImageView
             android:layout_width="wrap_content"

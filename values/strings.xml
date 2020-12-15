@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">USTH Weather</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="weather">12C\nCloudy</string>
+    <string name="Paris">Paris</string>
+    <string name="sunny">"It's sunny today"</string>
+    <string name="thursday">Thursday</string>
+</resources>

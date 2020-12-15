@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.res.Configuration;
 import android.util.Log;
 import android.os.Bundle;
 import android.widget.FrameLayout;
@@ -13,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.Locale;
 
 public class WeatherActivity extends AppCompatActivity {
     public static class WeatherAdapter extends FragmentPagerAdapter{
@@ -39,12 +42,16 @@ public class WeatherActivity extends AppCompatActivity {
         }
         @Override
         public CharSequence getPageTitle(int position) {
-            return "Page " + position;
+            return "Page" + position;
         }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Locale locale = new Locale("fr");
+        Locale.setDefault(locale);
+        Configuration config = getBaseContext().getResources().getConfiguration();
+        config.locale = locale;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
         Log.i("Created","onCreate");

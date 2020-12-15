@@ -6,7 +6,7 @@
     android:id="@+id/gigabiglayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="4px"
+    android:layout_margin="@dimen/small_margin"
     android:orientation="vertical"
     tools:context=".ForecastFragment">
 
@@ -21,10 +21,10 @@
             android:id="@+id/forecastlayout1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginRight="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/small_margin"
             android:layout_weight="1"
             android:orientation="horizontal"
             android:visibility="visible"
@@ -36,7 +36,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Thursday"></TextView>
+                android:text="@string/thursday"></TextView>
 
             <ImageView
                 android:id="@+id/icon1"
@@ -44,11 +44,10 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:contentDescription="cloudy_icon"
-                android:paddingLeft="4dp"
-                android:paddingTop="4dp"
-                android:paddingRight="4dp"
-                android:paddingBottom="4dp"
+                android:paddingLeft="@dimen/small_margin"
+                android:paddingTop="@dimen/small_margin"
+                android:paddingRight="@dimen/small_margin"
+                android:paddingBottom="@dimen/small_margin"
                 android:scaleType="center"
                 android:src="@drawable/cloud"
                 android:visibility="visible"
@@ -60,17 +59,17 @@
                 android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:text="Today is sunny"></TextView>
+                android:text="@string/sunny"></TextView>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/forecastlayout2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginRight="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/small_margin"
             android:layout_weight="1"
             android:orientation="horizontal"
             android:visibility="visible"
@@ -82,7 +81,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Thursday"></TextView>
+                android:text="@string/thursday"></TextView>
 
             <ImageView
                 android:id="@+id/icon2"
@@ -90,11 +89,10 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:contentDescription="cloudy_icon"
-                android:paddingLeft="4dp"
-                android:paddingTop="4dp"
-                android:paddingRight="4dp"
-                android:paddingBottom="4dp"
+                android:paddingLeft="@dimen/small_padding"
+                android:paddingTop="@dimen/small_padding"
+                android:paddingRight="@dimen/small_padding"
+                android:paddingBottom="@dimen/small_padding"
                 android:scaleType="center"
                 android:src="@drawable/cloud"
                 android:visibility="visible"
@@ -106,17 +104,17 @@
                 android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:text="Today is sunny"></TextView>
+                android:text="@string/sunny"></TextView>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/forecastlayout3"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginRight="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/small_margin"
             android:layout_weight="1"
             android:orientation="horizontal"
             android:visibility="visible"
@@ -128,7 +126,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Thursday"></TextView>
+                android:text="@string/thursday"></TextView>
 
             <ImageView
                 android:id="@+id/icon3"
@@ -136,11 +134,10 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:contentDescription="cloudy_icon"
-                android:paddingLeft="4dp"
-                android:paddingTop="4dp"
-                android:paddingRight="4dp"
-                android:paddingBottom="4dp"
+                android:paddingLeft="@dimen/small_padding"
+                android:paddingTop="@dimen/small_padding"
+                android:paddingRight="@dimen/small_padding"
+                android:paddingBottom="@dimen/small_padding"
                 android:scaleType="center"
                 android:src="@drawable/cloud"
                 android:visibility="visible"
@@ -152,17 +149,17 @@
                 android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:text="Today is sunny"></TextView>
+                android:text="@string/sunny"></TextView>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/forecastlayout4"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginRight="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/small_margin"
             android:layout_weight="1"
             android:orientation="horizontal"
             android:visibility="visible"
@@ -174,7 +171,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Thursday"></TextView>
+                android:text="@string/thursday"></TextView>
 
             <ImageView
                 android:id="@+id/icon4"
@@ -182,11 +179,10 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:contentDescription="cloudy_icon"
-                android:paddingLeft="4dp"
-                android:paddingTop="4dp"
-                android:paddingRight="4dp"
-                android:paddingBottom="4dp"
+                android:paddingLeft="@dimen/small_padding"
+                android:paddingTop="@dimen/small_padding"
+                android:paddingRight="@dimen/small_padding"
+                android:paddingBottom="@dimen/small_padding"
                 android:scaleType="center"
                 android:src="@drawable/cloud"
                 android:visibility="visible"
@@ -198,7 +194,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:text="Today is sunny"></TextView>
+                android:text="@string/sunny"></TextView>
         </LinearLayout>
 
     </LinearLayout>
