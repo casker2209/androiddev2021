@@ -11,8 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vpPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </androidx.viewpager.widget.ViewPager>
 
-        <LinearLayout
+        <!--LinearLayout
             android:id="@+id/weatherfraglayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -28,14 +37,14 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <LinearLayout-
             android:id="@+id/forecastfraglayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="8px"
             android:layout_weight="1">
 
-        </LinearLayout>
+        </LinearLayout-->
 
     </LinearLayout>
 

@@ -12,6 +12,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.material.tabs.TabLayout;
+
 public class WeatherActivity extends AppCompatActivity {
     public static class WeatherAdapter extends FragmentPagerAdapter{
         private static int NUM_ITEMS = 3;
@@ -50,6 +52,9 @@ public class WeatherActivity extends AppCompatActivity {
         WeatherAdapter adapterViewPager = new WeatherAdapter(getSupportFragmentManager());
         vpPager.setOffscreenPageLimit(3);
         vpPager.setAdapter(adapterViewPager);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab);
+        tabLayout.setupWithViewPager(vpPager);
+
         //TextView mTextView = (TextView) findViewById(R.id.text_message);
         //mTextView.setText("Hello World!");
         //LinearLayout Layout = (LinearLayout) findViewById(R.id.forecastfraglayout);
