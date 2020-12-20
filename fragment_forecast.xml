@@ -43,12 +43,12 @@
                 android:layout_width="0px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:paddingLeft="@dimen/small_margin"
                 android:paddingTop="@dimen/small_margin"
                 android:paddingRight="@dimen/small_margin"
                 android:paddingBottom="@dimen/small_margin"
-                android:scaleType="center"
+                android:scaleType="fitCenter"
                 android:src="@drawable/cloud"
                 android:visibility="visible"
                 app:srcCompat="@drawable/cloud"
@@ -57,7 +57,7 @@
             <TextView
                 android:layout_width="0px"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="3"
                 android:gravity="center"
                 android:text="@string/sunny"></TextView>
         </LinearLayout>
@@ -88,12 +88,12 @@
                 android:layout_width="0px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:paddingLeft="@dimen/small_padding"
                 android:paddingTop="@dimen/small_padding"
                 android:paddingRight="@dimen/small_padding"
                 android:paddingBottom="@dimen/small_padding"
-                android:scaleType="center"
+                android:scaleType="fitCenter"
                 android:src="@drawable/cloud"
                 android:visibility="visible"
                 app:srcCompat="@drawable/cloud"
@@ -102,7 +102,7 @@
             <TextView
                 android:layout_width="0px"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="3"
                 android:gravity="center"
                 android:text="@string/sunny"></TextView>
         </LinearLayout>
@@ -133,12 +133,12 @@
                 android:layout_width="0px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:paddingLeft="@dimen/small_padding"
                 android:paddingTop="@dimen/small_padding"
                 android:paddingRight="@dimen/small_padding"
                 android:paddingBottom="@dimen/small_padding"
-                android:scaleType="center"
+                android:scaleType="fitCenter"
                 android:src="@drawable/cloud"
                 android:visibility="visible"
                 app:srcCompat="@drawable/cloud"
@@ -147,7 +147,7 @@
             <TextView
                 android:layout_width="0px"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="3"
                 android:gravity="center"
                 android:text="@string/sunny"></TextView>
         </LinearLayout>
@@ -178,12 +178,12 @@
                 android:layout_width="0px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:paddingLeft="@dimen/small_padding"
                 android:paddingTop="@dimen/small_padding"
                 android:paddingRight="@dimen/small_padding"
                 android:paddingBottom="@dimen/small_padding"
-                android:scaleType="center"
+                android:scaleType="fitCenter"
                 android:src="@drawable/cloud"
                 android:visibility="visible"
                 app:srcCompat="@drawable/cloud"
@@ -192,7 +192,7 @@
             <TextView
                 android:layout_width="0px"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="3"
                 android:gravity="center"
                 android:text="@string/sunny"></TextView>
         </LinearLayout>

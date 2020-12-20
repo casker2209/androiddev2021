@@ -1,23 +1,50 @@
 package vn.edu.usth.weather;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.res.Configuration;
+import android.content.Intent;
+import android.media.MediaPlayer;
+import android.os.Environment;
 import android.util.Log;
 import android.os.Bundle;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 
-import java.util.Locale;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class WeatherActivity extends AppCompatActivity {
+    MediaPlayer mp;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.weathermenu,menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()) {
+            case R.id.refresh:
+                startActivity(new Intent(WeatherActivity.this, PrefActivity.class));
+                return true;
+            case R.id.newicon:
+                Toast.makeText(WeatherActivity.this,(CharSequence)"This is a Toast.Refresh",Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     public static class WeatherAdapter extends FragmentPagerAdapter{
         private static int NUM_ITEMS = 3;
         public WeatherAdapter(FragmentManager fragmentManager) {
@@ -46,14 +73,44 @@ public class WeatherActivity extends AppCompatActivity {
         }
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Locale locale = new Locale("fr");
-        Locale.setDefault(locale);
-        Configuration config = getBaseContext().getResources().getConfiguration();
-        config.locale = locale;
+        //Locale locale = new Locale("fr");
+        //Locale.setDefault(locale);
+        //Configuration config = getBaseContext().getResources().getConfiguration();
+        //config.locale = locale;
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        //mp = MediaPlayer.create(getBaseContext(),R.raw.merrychristmas);
+        //mp.start();
+
+
+
+        InputStream is = getResources().openRawResource(R.raw.merrychristmas);
+
+        try {
+            FileOutputStream fos = new FileOutputStream(Environment.getExternalStorageDirectory()+"/Android/data/merrychristmas.mp3");
+            byte[] bytes = new byte[1024];
+            int read = 0;
+            while ((read = is.read(bytes)) > 0) {
+                fos.write(bytes, 0, read);
+            }
+            is.close();
+            fos.close();
+            mp = new MediaPlayer();
+            mp.setDataSource(Environment.getExternalStorageDirectory()+"/Android/data/merrychristmas.mp3");
+            mp.start();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         Log.i("Created","onCreate");
         ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
         WeatherAdapter adapterViewPager = new WeatherAdapter(getSupportFragmentManager());
@@ -74,6 +131,7 @@ public class WeatherActivity extends AppCompatActivity {
             //        R.id.forecastfraglayout, firstFragment).commit();
         }
     }
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -101,6 +159,7 @@ public class WeatherActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Log.i("Started","onStart");
+
     }
 
     @Override
