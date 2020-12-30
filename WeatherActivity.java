@@ -9,7 +9,9 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
@@ -39,7 +41,7 @@ public class WeatherActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
             case R.id.refresh:
-                final Handler handler = new Handler(Looper.myLooper()){
+                /*final Handler handler = new Handler(Looper.myLooper()){
                     @Override
                     public void handleMessage(@NonNull Message msg) {
                         String content = msg.getData().getString("server_response");
@@ -62,7 +64,26 @@ public class WeatherActivity extends AppCompatActivity {
                         handler.sendMessage(msg);
                     }
                 });
-                thread.start();
+                thread.start();*/
+                AsyncTask<String, Integer, Bitmap> task = new AsyncTask(){
+
+                    @Override
+                    protected Object doInBackground(Object[] objects) {
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Object o) {
+                        Toast.makeText(getBaseContext(),"Executed",Toast.LENGTH_SHORT).show();
+                    }
+                };
+                task.execute("http://ict.usth.edu.vn/wp-content/uploads/usth/usthlogo.png");
+
                 return true;
             case R.id.newicon:
                 Toast.makeText(WeatherActivity.this,(CharSequence)"This is a Toast.Refresh",Toast.LENGTH_LONG).show();
