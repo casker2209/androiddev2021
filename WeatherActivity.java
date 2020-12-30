@@ -1,5 +1,6 @@
 package vn.edu.usth.weather;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -10,6 +11,9 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.os.Bundle;
 import android.view.Menu;
@@ -35,7 +39,30 @@ public class WeatherActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
             case R.id.refresh:
-                startActivity(new Intent(WeatherActivity.this, PrefActivity.class));
+                final Handler handler = new Handler(Looper.myLooper()){
+                    @Override
+                    public void handleMessage(@NonNull Message msg) {
+                        String content = msg.getData().getString("server_response");
+                        Toast.makeText(getBaseContext(), content, Toast.LENGTH_SHORT).show();
+                    }
+                };
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(5000);
+                        }
+                        catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        Bundle bundle = new Bundle();
+                        bundle.putString("server_response", "some sample json here");
+                        Message msg = new Message();
+                        msg.setData(bundle);
+                        handler.sendMessage(msg);
+                    }
+                });
+                thread.start();
                 return true;
             case R.id.newicon:
                 Toast.makeText(WeatherActivity.this,(CharSequence)"This is a Toast.Refresh",Toast.LENGTH_LONG).show();
