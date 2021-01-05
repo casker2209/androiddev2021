@@ -25,6 +25,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.tabs.TabLayout;
 
 import java.io.FileNotFoundException;
@@ -38,7 +42,9 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
+
 public class WeatherActivity extends AppCompatActivity {
+    static RequestQueue rq;
     MediaPlayer mp;
     HttpsURLConnection connection;
     URL url;
@@ -75,6 +81,19 @@ public class WeatherActivity extends AppCompatActivity {
                     }
                 });
                 thread.start();*/
+                Response.Listener<Bitmap> listener = new Response.Listener<Bitmap>(){
+                    @Override
+                    public void onResponse(Bitmap response) {
+                        ImageView iv = (ImageView) findViewById(R.id.icon2);
+                        iv.setImageBitmap(response);
+                    }
+                };
+                ImageRequest imageRequest = new ImageRequest(
+                        "https://usth.edu.vn/uploads/chuong-trinh/2017_01/logo-moi_2.png",
+                        listener, 0, 0, ImageView.ScaleType.CENTER,
+                        Bitmap.Config.ARGB_8888,null);
+                rq.add(imageRequest);
+
                 AsyncTask<String, Integer, Bitmap> task = new AsyncTask(){
 
                     @Override
@@ -155,7 +174,7 @@ public class WeatherActivity extends AppCompatActivity {
         //Locale.setDefault(locale);
         //Configuration config = getBaseContext().getResources().getConfiguration();
         //config.locale = locale;
-
+        rq =  Volley.newRequestQueue(WeatherActivity.this);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
