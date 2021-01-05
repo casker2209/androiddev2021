@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Environment;
@@ -20,6 +21,8 @@ import android.util.Log;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
@@ -28,10 +31,17 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class WeatherActivity extends AppCompatActivity {
     MediaPlayer mp;
-
+    HttpsURLConnection connection;
+    URL url;
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.weathermenu,menu);
@@ -70,8 +80,21 @@ public class WeatherActivity extends AppCompatActivity {
                     @Override
                     protected Object doInBackground(Object[] objects) {
                         try {
-                            Thread.sleep(5000);
-                        } catch (InterruptedException e) {
+                            url = new URL("https://usth.edu.vn/uploads/chuong-trinh/2017_01/logo-moi_2.png");
+                            connection =
+                                    (HttpsURLConnection) url.openConnection();
+                            connection.setRequestMethod("GET");
+                            connection.setDoInput(true);
+                            connection.connect();
+                            int response = connection.getResponseCode();
+                            Log.i("USTHWeather", "The response is: " + response);
+                            InputStream is = connection.getInputStream();
+                            Bitmap bitmap = BitmapFactory.decodeStream(is);
+                            return bitmap;
+
+                        } catch (MalformedURLException | ProtocolException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
                             e.printStackTrace();
                         }
                         return null;
@@ -79,6 +102,10 @@ public class WeatherActivity extends AppCompatActivity {
 
                     @Override
                     protected void onPostExecute(Object o) {
+                        Bitmap bitmap = (Bitmap) o;
+                        ImageView logo = (ImageView) findViewById(R.id.icon1);
+                        logo.setImageBitmap(bitmap);
+                        connection.disconnect();
                         Toast.makeText(getBaseContext(),"Executed",Toast.LENGTH_SHORT).show();
                     }
                 };
