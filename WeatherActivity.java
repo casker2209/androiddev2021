@@ -23,13 +23,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.tabs.TabLayout;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -39,15 +48,21 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
 
 public class WeatherActivity extends AppCompatActivity {
     static RequestQueue rq;
+    ViewPager vpPager;
     MediaPlayer mp;
     HttpsURLConnection connection;
+    WeatherAdapter adapterViewPager;
     URL url;
+    String weather;
+    String city;
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.weathermenu,menu);
@@ -81,6 +96,7 @@ public class WeatherActivity extends AppCompatActivity {
                     }
                 });
                 thread.start();*/
+                getWeatherAPI();
                 Response.Listener<Bitmap> listener = new Response.Listener<Bitmap>(){
                     @Override
                     public void onResponse(Bitmap response) {
@@ -139,6 +155,47 @@ public class WeatherActivity extends AppCompatActivity {
         }
     }
 
+
+    public void getWeatherAPI(){
+        String input = adapterViewPager.getPageTitle(vpPager.getCurrentItem()).toString();
+        rq = Volley.newRequestQueue(this);
+        String url = "https://community-open-weather-map.p.rapidapi.com/weather?q="+input+"&lat=0&lon=0&id=2172797&lang=null&units=metric&mode=xml%2C%20html";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                TextView ___weather = (TextView) getSupportFragmentManager().getFragments().get(vpPager.getCurrentItem()).getView().findViewById(R.id.weather);
+                TextView ___city = (TextView) getSupportFragmentManager().getFragments().get(vpPager.getCurrentItem()).getView().findViewById(R.id.city);
+
+
+                try {
+                    weather = response.getJSONArray("weather").getJSONObject(0).getString("main")
+                            +"\n" +response.getJSONObject("main").getString("temp")+"C";
+                    city = response.getString("name");
+                    ___weather.setText(weather);
+                    ___city.setText(city);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                //headers.put("Content-Type", "application/json");
+                headers.put("x-rapidapi-key", "6855de1677mshbac36bd7916394ep199e40jsna5072934982b");
+                headers.put("x-rapidapi-host","community-open-weather-map.p.rapidapi.com");
+                return headers;
+            }
+        };
+        rq.add(request);
+    }
+
     public static class WeatherAdapter extends FragmentPagerAdapter{
         private static int NUM_ITEMS = 3;
         public WeatherAdapter(FragmentManager fragmentManager) {
@@ -163,8 +220,17 @@ public class WeatherActivity extends AppCompatActivity {
         }
         @Override
         public CharSequence getPageTitle(int position) {
-            return "Page" + position;
+            switch(position){
+                case 0:
+                    return "Hanoi,vn";
+                case 1:
+                    return "Paris,fr";
+                case 2:
+                    return "Tokyo,jp";
+            }
+        return null;
         }
+
     }
 
 
@@ -206,13 +272,13 @@ public class WeatherActivity extends AppCompatActivity {
         }
 
         Log.i("Created","onCreate");
-        ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
-        WeatherAdapter adapterViewPager = new WeatherAdapter(getSupportFragmentManager());
+        vpPager = (ViewPager) findViewById(R.id.vpPager);
+        adapterViewPager = new WeatherAdapter(getSupportFragmentManager());
         vpPager.setOffscreenPageLimit(3);
         vpPager.setAdapter(adapterViewPager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab);
         tabLayout.setupWithViewPager(vpPager);
-
+        getWeatherAPI();
         //TextView mTextView = (TextView) findViewById(R.id.text_message);
         //mTextView.setText("Hello World!");
         //LinearLayout Layout = (LinearLayout) findViewById(R.id.forecastfraglayout);
